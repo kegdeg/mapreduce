@@ -105,10 +105,15 @@ for line in sys.stdin:
 variables = list(month_values.keys())
 correlate = correlation_matrix(list(month_values.values()))
 
-# Print the correlation matrix as key-value pairs
+correlation_dict = {}
+
 for i in range(len(variables)):
-    for j in range(i+1, len(variables)):
-        print(f"({variables[i]}, {variables[j]}): {correlate[i, j]}")
+    correlation_dict[variables[i]] = {}
+    for j in range(len(variables)):  
+        correlation_dict[variables[i]][variables[j]] = correlate[i, j]
+
+print(correlation_dict)
+
 
 
 
